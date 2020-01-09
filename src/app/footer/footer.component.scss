@@ -1,0 +1,12 @@
+@import '../../assets/scss/variables';
+
+.footer-container {
+
+    .footer {
+        background-color: $navFooterBgColor;
+        left: 0;
+        padding: 1rem;
+        position: absolute;
+        right: 0;
+    }
+}

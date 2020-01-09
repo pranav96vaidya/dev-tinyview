@@ -1,0 +1,68 @@
+@import '../../assets/scss/variables';
+
+.comic-container {
+  max-width: 450px;
+  margin: 0 auto;
+  min-height: 500px;
+  padding-top: 15px;
+  
+  .comic-list-container {
+
+    app-image {
+      display: block;
+    }
+
+    .image-container {
+      display: block;
+      margin-bottom: 15px;
+      
+      .img {
+        width: 100%;
+      }
+    }
+
+    .bg-image-container {
+      background-image: url("https://storage.googleapis.com/tinyview-d78fb.appspot.com/tinyview/app/send-me-the-app.jpg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: top;
+      min-height: 340px;
+      width: 450px;
+
+      .form-container {
+        height: 340px;
+        position: relative;
+      
+        .input-container {
+          bottom: 50px;
+          display: inline-block;
+          margin: 0;
+          position: absolute;
+          right: 24px;
+          width: 48%;
+        }
+      
+        .btn-container {
+          bottom: 12px;
+          display: inline-block;
+          margin: 0;
+          position: absolute;
+          right: 25px;
+      
+          .btn-disable {
+            cursor: not-allowed;
+          }
+      
+          .btn {
+            height: 35px;
+            width: 220px;
+          }
+        }
+      }
+    }
+  }
+}
+
+app-data-not-found .no-data-found span {
+  cursor: pointer;
+}

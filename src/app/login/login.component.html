@@ -1,0 +1,25 @@
+<div class="loading-indicator-wrapper" *ngIf="isLoading">
+  <mat-spinner [diameter]="40"></mat-spinner>
+</div>
+<div class="login-container" *ngIf="!isLoading">
+  <div class="displayTableCell">
+
+    <div class="authBlock">
+      <h3 class="text-center desc">Sign In</h3>
+      <div class="formGroup">
+        <label for="userName" class="label">User Name</label>
+        <input type="text" class="formControl" placeholder="Username" #userName required>
+      </div>
+
+      <div class="formGroup">
+        <label for="userPassword" class="label">Password</label>
+        <input type="password" class="formControl" placeholder="Password" #userPassword required>
+      </div>
+
+      <div class="formGroup text-center">
+        <button type="button" class="btn btn-primary signin" value="Log in" (click)="authService.signIn(userName.value, userPassword.value)">Sign In</button>
+      </div>
+    </div>
+
+  </div>
+</div>

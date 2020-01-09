@@ -1,0 +1,89 @@
+<div class="loading-indicator-wrapper" *ngIf="!fetchDone && (errorMsg == null)">
+  <mat-spinner [diameter]="40"></mat-spinner>
+</div>
+<div *ngIf="fetchDone && !isPaid && (errorMsg == null)" class="comic-container">
+  <div class="row">
+    <div class="col-12 comic-list-container"
+      *ngIf="!hideOpenInApp && (currentDevice == 'androidBrowser' || currentDevice == 'iosBrowser')">
+      <a class="image-container" (click)="openApp()">
+        <img src="https://storage.googleapis.com/tinyview-d78fb.appspot.com/tinyview/app/open-in-app.jpg" class="img"
+          offset="100px">
+      </a>
+    </div>
+    <div class="col-12 comic-list-container" *ngFor="let list of chapterList">
+      <app-image [comicData]="list"></app-image>
+    </div>
+    <div class="col-12 comic-list-container" *ngIf="currentDevice == 'desktopBrowser'">
+      <a class="image-container">
+        <div class="bg-image-container">
+          <form [formGroup]="myform" (ngSubmit)="sendSMS()" class="form-container">
+            <div class="form-group input-container">
+              <input type="tel" id="phone" placeholder="+1 (123) 123-1234" class="form-control" formControlName="phone">
+            </div>
+            <div class="form-group" class="btn-container">
+              <button type="submit" class="btn" [ngClass]="{'btn-disable': !myform.valid}"
+                [disabled]="!myform.valid"></button>
+            </div>
+          </form>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+<div *ngIf="fetchDone && isPaid && (errorMsg == null)" class="comic-container">
+  <div class="row">
+    <div class="col-12 comic-list-container"
+      *ngIf="!hideOpenInApp && (currentDevice == 'androidBrowser' || currentDevice == 'iosBrowser')">
+      <a class="image-container" (click)="openApp()">
+        <img src="https://storage.googleapis.com/tinyview-d78fb.appspot.com/tinyview/app/open-in-app.jpg" class="img"
+          offset="100px">
+      </a>
+    </div>
+    <div class="col-12 comic-list-container" *ngFor="let list of chapterList">
+      <app-image [comicData]="list"></app-image>
+    </div>
+    <div class="col-12 comic-list-container">
+      <a class="image-container">
+        <img src="https://storage.googleapis.com/tinyview-d78fb.appspot.com/tinyview/app/app-required.jpg" class="img"
+          offset="100px">
+      </a>
+    </div>
+    <div class="col-12 comic-list-container" *ngIf="currentDevice == 'androidBrowser' || currentDevice == 'iosBrowser'">
+      <a class="image-container" *ngIf="currentDevice == 'androidBrowser'" (click)="openApp()">
+        <img src="https://storage.googleapis.com/tinyview-d78fb.appspot.com/tinyview/app/download-app-android.jpg"
+          class="img" offset="100px">
+      </a>
+      <a class="image-container" *ngIf="currentDevice == 'iosBrowser'" (click)="openApp()">
+        <img src="https://storage.googleapis.com/tinyview-d78fb.appspot.com/tinyview/app/download-app-ios.jpg"
+          class="img" offset="100px">
+      </a>
+    </div>
+    <div class="col-12 comic-list-container" *ngIf="currentDevice == 'desktopBrowser'">
+      <a class="image-container">
+        <div class="bg-image-container">
+          <form [formGroup]="myform" (ngSubmit)="sendSMS()" class="form-container">
+            <div class="form-group input-container">
+              <input type="tel" id="phone" placeholder="+1 (123) 123-1234" class="form-control" formControlName="phone">
+            </div>
+            <div class="form-group" class="btn-container">
+              <button type="submit" class="btn" [ngClass]="{'btn-disable': !myform.valid}"
+                [disabled]="!myform.valid"></button>
+            </div>
+          </form>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+<app-data-not-found *ngIf="errorMsg">
+  <div class="no-data-found">
+    <p>
+      {{errorMsg}}
+    </p>
+    <p>
+      <span class="error-navigate" [routerLink]="['']" routerLinkActive="router-link-active">Click here</span> to
+      navigate to home page.
+    </p>
+  </div>
+</app-data-not-found>
+<app-footer *ngIf="fetchDone || errorMsg"></app-footer>

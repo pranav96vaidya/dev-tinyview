@@ -1,0 +1,25 @@
+.card {
+  box-shadow: 0  10px  20px  rgba(0,0,0,0.19), 0  6px  6px  rgba(0,0,0,0.23);
+}
+
+.login-container {
+  border: 1px solid black;
+  border-radius: 2px;
+  margin: 50px auto;
+  padding: 20px;
+  width: 30%;
+
+  .desc {
+    padding-bottom: 20px;
+  }
+
+  .label {
+    min-width: 100px;
+    padding-right: 10px;
+  }
+
+  .signin {
+    font-size: 10px;
+    margin-top: 10px;
+  }
+}

@@ -1,0 +1,40 @@
+<!-- mode="push" -->
+<div>
+  <mat-sidenav-container fullscreen #sideNavContainer>
+    <mat-sidenav #sidenav class="app-sidenav">
+      <mat-toolbar>
+        <span class="toolbar-filler"></span>
+        <button mat-icon-button (click)="sidenav.toggle()" class="mat-icon-button sidenav-toggle-button"
+          [hidden]="!sidenav.opened">
+          <mat-icon aria-label="Menu" class="material-icons">close</mat-icon>
+        </button>
+      </mat-toolbar>
+      <mat-nav-list>
+        <a mat-list-item class="sidenav-link" [routerLink]="['']" (click)="sidenav.toggle()">
+          <span class="title" mat-line>What’s Tinyview?</span>
+        </a>
+        <a mat-list-item class="sidenav-link" [routerLink]="['/in-science-we-trust']" (click)="sidenav.toggle()">
+          <span class="title" mat-line>In Science We Trust</span>
+        </a>
+        <a mat-list-item class="sidenav-link" [routerLink]="['privacy-policy']" (click)="sidenav.toggle()">
+          <span class="title" mat-line>Privacy Policy</span>
+        </a>
+        <a mat-list-item class="sidenav-link" [routerLink]="['terms-conditions']" (click)="sidenav.toggle()">
+          <span class="title" mat-line>Terms and Conditions</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-toolbar id="appToolbar">
+      <button mat-icon-button (click)="sidenav.toggle()" class="mat-icon-button sidenav-toggle-button toggle-button"
+        [disabled]="sidenav.opened">
+        <mat-icon aria-label="Menu" class="material-icons">menu</mat-icon>
+      </button>
+      <div class="component-title" *ngIf="post | async as p">
+        <span class="head-content">{{ p.text }}</span>
+      </div>
+    </mat-toolbar>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-container>
+</div>

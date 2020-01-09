@@ -1,0 +1,82 @@
+.form-container {
+  padding: 15px 0;
+
+  .date-selector {
+      width: 200px;
+      margin-right: 5px;
+      @media screen and (max-width: 768px) {
+        width: 150px;
+      }
+  }
+
+  .btn {
+      padding: 3px 8px;
+  }
+}
+
+.sign-out {
+  padding-top: 10px;
+
+  .toolbar-filler {
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: underline;
+  }
+}
+
+.user-list-table {
+  tr th, tr td {
+    text-align: center;
+  } 
+}
+
+.wrapper {
+  overflow-x: auto;
+}
+
+th {
+  position: sticky;
+  top: 0;
+}
+
+th:first-of-type, td:first-of-type {
+  left: 0;
+  position: sticky;
+}
+
+th:first-of-type {
+  background: #F9F9F9;
+  z-index: 2;
+}
+
+tr:nth-child(even) > td:first-of-type {
+  background: #F9F9F9;
+  z-index: 2;
+}
+
+tr:nth-child(odd) > td:first-of-type {
+  background: #e8e9e8;
+  z-index: 2;
+}
+
+table {
+  margin-bottom: 0;
+
+  tfoot > tr:nth-child(odd) > td:first-of-type{
+    background: #f9f9f9;
+    font-weight: 700;
+  }
+}
+
+th, td p {
+  white-space: nowrap;
+}
+
+td p {
+  margin-top: 0;
+}
+
+td p:last-child {
+  margin-bottom: 0;
+}

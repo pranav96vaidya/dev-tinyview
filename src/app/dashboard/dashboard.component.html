@@ -1,0 +1,72 @@
+<div class="loading-indicator-wrapper" *ngIf="isLoading">
+  <mat-spinner [diameter]="40"></mat-spinner>
+</div>
+<div *ngIf="!isLoading">
+  <div class="row form-container">
+    <div class="filter-form col-9">
+      <form class="form-inline" [formGroup]="userForm" (submit)="onSubmit()">
+        <div class="form-group">
+          <select class="form-control date-selector" formControlName="dateVal"> 
+            <ng-container *ngFor="let date of dates">
+              <option value="{{date.key}}">{{date.value}}</option>
+            </ng-container>
+          </select>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-3 text-right sign-out">
+      <span class="toolbar-filler" (click)="authService.signOut()">Signout</span>
+    </div>
+  </div>
+  <div>
+    <div class="table-responsive wrapper">
+      <table class="table table-striped user-list-table">
+        <thead>
+          <tr>
+            <th class="action-head">Dates</th>
+            <th class="action-head">User</th>
+            <th class="action-head">Transaction</th>
+            <th class="action-head">Referrals</th>
+            <th class="action-head">Pageviews</th>
+            <th class="action-head">DAU</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="!preparedData.hasOwnProperty('all')">
+            <tr *ngFor="let item of preparedData | keyvalue">
+              <td class="action-head">{{item.value.utcTime}}</td>
+              <td class="action-head">{{item.value.users.length}}</td>
+              <td class="action-head">{{item.value.transactions.length}}</td>
+              <td class="action-head">{{item.value.referrals.length}}</td>
+              <td class="action-head">{{item.value.pageViews.length}}</td>
+              <td class="action-head">{{item.value.dau.length}}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>Total</td>
+            <td>
+              {{tableData.data.users.length}}
+            </td>
+            <td>
+              {{tableData.data.transactions.length}}
+            </td>
+            <td>
+              {{tableData.data.referrals.length}}
+            </td>
+            <td>
+              {{tableData.data.pageViews.length}}
+            </td>
+            <td>
+              {{tableData.data.dau.length}}
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

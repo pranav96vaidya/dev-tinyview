@@ -1,0 +1,20 @@
+.image-container {
+  display: block;
+  margin-bottom: 15px;
+
+  .content {
+    display: inline-block;
+  }
+
+  .bg-image-container {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top;
+    min-height: 340px;
+    width: 450px;
+  }
+  
+  .img {
+    width: 100%;
+  }
+}

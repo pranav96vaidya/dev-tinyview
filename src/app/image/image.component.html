@@ -1,0 +1,21 @@
+<ng-container *ngIf="willRender">
+  <div class="image-container" *ngIf="!actionWebsite && !actionTinyview">
+    <a *ngIf="comicData.action" class="content" [routerLink]="nextRoute" routerLinkActive="router-link-active"
+      (click)="navigateToRoute()">
+      <img [src]="imgUrl" class="img">
+    </a>
+    <a *ngIf="!comicData.action" class="content">
+      <img [src]="imgUrl" class="img">
+    </a>
+  </div>
+  <div class="image-container" *ngIf="actionTinyview && !actionWebsite && (renderDownloadAndroid || renderDownloadIos)">
+    <a class="content" (click)="openApp()">
+      <img [src]="imgUrl" class="img">
+    </a>
+  </div>
+  <div class="image-container" *ngIf="actionWebsite && !actionTinyview">
+    <a [href]="comicData.action" class="content">
+      <img [src]="imgUrl" class="img">
+    </a>
+  </div>
+</ng-container>
