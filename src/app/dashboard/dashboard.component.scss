@@ -65,6 +65,9 @@ table {
 
   tfoot > tr:nth-child(odd) > td:first-of-type{
     background: #f9f9f9;
+  }
+
+  tfoot td {
     font-weight: 700;
   }
 }

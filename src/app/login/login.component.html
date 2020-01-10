@@ -1,19 +1,19 @@
 <div class="loading-indicator-wrapper" *ngIf="isLoading">
   <mat-spinner [diameter]="40"></mat-spinner>
 </div>
-<div class="login-container" *ngIf="!isLoading">
+<div class="login-container col-12 col-md-4 offset-md-4" *ngIf="!isLoading">
   <div class="displayTableCell">
 
     <div class="authBlock">
       <h3 class="text-center desc">Sign In</h3>
-      <div class="formGroup">
-        <label for="userName" class="label">User Name</label>
-        <input type="text" class="formControl" placeholder="Username" #userName required>
+      <div class="form-group row">
+        <label for="userName" class="label col-4">User Name</label>
+        <input type="text" class="form-control col-8" placeholder="Username" #userName required>
       </div>
 
-      <div class="formGroup">
-        <label for="userPassword" class="label">Password</label>
-        <input type="password" class="formControl" placeholder="Password" #userPassword required>
+      <div class="form-group row">
+        <label for="userPassword" class="label col-4">Password</label>
+        <input type="password" class="form-control col-8" placeholder="Password" #userPassword required>
       </div>
 
       <div class="formGroup text-center">

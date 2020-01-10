@@ -5,9 +5,8 @@
 .login-container {
   border: 1px solid black;
   border-radius: 2px;
-  margin: 50px auto;
+  margin-top: 50px;
   padding: 20px;
-  width: 30%;
 
   .desc {
     padding-bottom: 20px;
@@ -15,7 +14,9 @@
 
   .label {
     min-width: 100px;
+    margin: 0;
     padding-right: 10px;
+    padding-top: 10px;
   }
 
   .signin {

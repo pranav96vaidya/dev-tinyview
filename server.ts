@@ -49,8 +49,17 @@ app.get('*.*', express.static(DIST_FOLDER, {
   maxAge: '1y'
 }));
 
+app.get('/dashboard', (req, res) => {
+  res.sendFile(join(DIST_FOLDER, 'index.html'));
+});
+
+app.get('/login', (req, res) => {
+  res.sendFile(join(DIST_FOLDER, 'index.html'));
+});
+
 // All regular routes use the Universal engine
 app.get('*', (req, res) => {
+  console.log(req);
   res.render('index', { req });
 });
 

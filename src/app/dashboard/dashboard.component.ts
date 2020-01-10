@@ -61,37 +61,38 @@ export class DashboardComponent implements OnInit {
         this.preparedData['all'].dau = this.tableData.data.dau;
         this.isLoading = false;
       } else {
-        this.prepareTableData(this.tableData.data.users);
-        this.prepareTableData(this.tableData.data.transactions);
-        this.prepareTableData(this.tableData.data.referrals);
-        this.prepareTableData(this.tableData.data.pageViews);
-        this.prepareTableData(this.tableData.data.dau);
+        this.prepareTableData(this.tableData.data, 'users');
+        this.prepareTableData(this.tableData.data, 'transactions');
+        this.prepareTableData(this.tableData.data, 'referrals');
+        this.prepareTableData(this.tableData.data, 'pageViews');
+        this.prepareTableData(this.tableData.data, 'dau');
       }
     });
   }
 
-  public prepareTableData(item) {
-    for (let i = 0; i < item.length; i++) {
-      const dateVal = new Date(item[i].createdTime);
+  public prepareTableData(data, item) {
+    const items = data[item];
+    for (let i = 0; i < items.length; i++) {
+      const dateVal = new Date(items[i].createdTime);
       dateVal.setUTCHours(0, 0, 0, 0);
       const epochTime = dateVal.getTime();
       if (epochTime in this.preparedData) {
-        this.preparedData[epochTime].users.push(item[i].createdTime);
-      } else {
-        const day = dateVal.getDate();
-        const month = dateVal.getMonth() + 1;
-        const year = dateVal.getFullYear();
-        const dateStr = day + '/' + month + '/' + year;
-        this.preparedData[epochTime] = {
-          utcTime: dateStr,
-          users: [],
-          transactions: [],
-          referrals: [],
-          pageViews: [],
-          dau: []
-        };
-        this.preparedData[epochTime].users.push(item[i].createdTime);
+        this.preparedData[epochTime][item].push(items[i].createdTime);
+        continue;
       }
+      const day = dateVal.getDate();
+      const month = dateVal.getMonth() + 1;
+      const year = dateVal.getFullYear();
+      const dateStr = day + '/' + month + '/' + year;
+      this.preparedData[epochTime] = {
+        utcTime: dateStr,
+        users: [],
+        transactions: [],
+        referrals: [],
+        pageViews: [],
+        dau: []
+      };
+      this.preparedData[epochTime][item].push(items[i].createdTime);
     }
     this.isLoading = false;
   }
