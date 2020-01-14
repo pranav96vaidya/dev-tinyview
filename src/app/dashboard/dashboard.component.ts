@@ -3,6 +3,13 @@ import { AuthService } from '../services/auth.service';
 import * as firebase from 'firebase/app';
 import 'firebase/functions';
 import { FormGroup, FormControl } from '@angular/forms';
+import * as PostActions from '../redux/action';
+import { Store } from '@ngrx/store';
+import { Post } from '../redux/model';
+
+interface AppState {
+  post: Post;
+}
 
 @Component({
   selector: 'app-dashboard',
@@ -17,10 +24,12 @@ export class DashboardComponent implements OnInit {
   preparedData: any;
 
   constructor(
-    public authService: AuthService
+    public authService: AuthService,
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {
+    this.store.dispatch(new PostActions.EditText('Dashboard'));
     this.userForm = new FormGroup({
       dateVal: new FormControl(0)
     });
@@ -29,7 +38,7 @@ export class DashboardComponent implements OnInit {
       { key: 1, value: 'Yesterday'},
       { key: 7, value: 'Last 7 Days'},
       { key: 30, value: 'Last 30 Days'},
-      { key: -1, value: 'All'}
+      { key: -1, value: 'All-time'}
     ];
     this.getData(0);
   }
@@ -83,7 +92,7 @@ export class DashboardComponent implements OnInit {
       const day = dateVal.getDate();
       const month = dateVal.getMonth() + 1;
       const year = dateVal.getFullYear();
-      const dateStr = day + '/' + month + '/' + year;
+      const dateStr = month + '/' + day + '/' + year;
       this.preparedData[epochTime] = {
         utcTime: dateStr,
         users: [],
